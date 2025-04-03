@@ -245,7 +245,7 @@ var UI={
 
 var AppSettings={
 	langCode:(typeof navigator.userLanguage==='string')? navigator.userLanguage.substr(0,2) : 'en',
-	outputFileNameMatch:false,
+	outputFileNameMatch:true,
 	fixChecksum:false,
 	lightTheme:false,
 
@@ -299,6 +299,12 @@ addEvent(window,'load',function(){
 
 	/* load settings */
 	AppSettings.load();
+	
+	/* ensure the output name switch is enabled by default */
+	if(AppSettings.outputFileNameMatch){
+		el('switch-output-name').className='switch enabled';
+	}
+	
 	UI.localize();
 
 	
