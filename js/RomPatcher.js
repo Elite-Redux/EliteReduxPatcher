@@ -258,10 +258,9 @@ var AppSettings={
 					this.langCode=loadedSettings.langCode;
 					el('select-language').value=this.langCode;
 				}
-				if(loadedSettings.outputFileNameMatch===true){
-					this.outputFileNameMatch=loadedSettings.outputFileNameMatch;
-					el('switch-output-name').className='switch enabled';
-				}
+				// Always keep outputFileNameMatch as true regardless of saved setting
+				this.outputFileNameMatch=true;
+				el('switch-output-name').className='switch enabled';
 				if(loadedSettings.fixChecksum===true){
 					this.fixChecksum=loadedSettings.fixChecksum;
 					el('switch-fix-checksum').className='switch enabled';

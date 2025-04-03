@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html translate="no">
 <head>
-	<title>Rom Patcher JS</title>
+	<title>Pokémon Elite Redux Patcher</title>
 	<meta http-equiv="content-Type" content="text/html; charset=UTF-8"/>
-	<meta name="description" content="An online web-based ROM patcher. Supported formats: IPS, BPS, UPS, APS, RUP, PPF and xdelta."/>
-	<meta name="keywords" content="ips,ups,aps,bps,rup,ninja,ppf,xdelta,patcher,online,html5,web,rom,patch,hack,translation"/>
+	<meta name="description" content="Pokémon Elite Redux ROM Patcher - Apply patches to get Elite Redux"/>
+	<meta name="keywords" content="pokemon,elite redux,rom,patch,hack,emerald,gba"/>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
 	<link rel="manifest" href="./manifest.json"/>
 	<link rel="shortcut icon" href="./style/app_icon_16.png" type="image/png" sizes="16x16"/>
@@ -22,17 +22,15 @@
 	<meta http-equiv="Expires" content="0" />
 
 	<!-- social network metatags -->	
-	<meta name="twitter:site" content="@marc_robledo">
-	<meta name="twitter:creator" content="@marc_robledo">
-	<meta name="twitter:domain" content="marcrobledo.com">
-	<meta property="og:title" content="Rom Patcher JS">
-	<meta name="twitter:title" content="Rom Patcher JS">
-	<meta name="twitter:description" content="An online web-based ROM patcher. Supported formats: IPS, BPS, UPS, APS, RUP, PPF and xdelta.">
-	<meta property="og:image" content="https://www.marcrobledo.com/RomPatcher.js/style/thumbnail.jpg">
-	<meta name="twitter:image" content="https://www.marcrobledo.com/RomPatcher.js/style/thumbnail.jpg">
-	<meta name="twitter:card" content="photo">
+	<meta property="og:title" content="Pokémon Elite Redux Patcher">
+	<meta name="twitter:title" content="Pokémon Elite Redux Patcher">
+	<meta name="twitter:description" content="Apply patches to get Pokémon Elite Redux">
+	<meta property="og:image" content="./images/pokemon-elite-redux-logo-transparent-no-margin-800px.png">
+	<meta name="twitter:image" content="./images/pokemon-elite-redux-logo-transparent-no-margin-800px.png">
+	<meta name="twitter:card" content="summary">
 
 	<link type="text/css" rel="stylesheet" href="./style/RomPatcher.css" media="all"/>
+	<link type="text/css" rel="stylesheet" href="./style/EliteRedux.css" media="all"/>
 	<script type="text/javascript" src="./js/locale.js"></script>
 	<script type="text/javascript" src="./js/RomPatcher.js"></script>
 	<script type="text/javascript" src="./js/MarcFile.js"></script>
@@ -49,6 +47,7 @@
 	<script type="text/javascript" src="./js/formats/vcdiff.js"></script>
 
 	<script type="text/javascript" src="./js/zip.js/zip.js"></script>
+	<script type="text/javascript" src="./js/EliteRedux.js"></script>
 	<!-- <script type="text/javascript" src="js/libunrar/rpc.js"></script> -->
 
 	<script type="text/javascript"><!--
@@ -74,7 +73,10 @@
 
 
 <!-- HEADER -->
-<header><img src="./style/logo.png" /><h1>Rom Patcher JS</h1></header>
+<header>
+  <img src="./images/pokemon-elite-redux-logo-transparent-no-margin-800px.png" alt="Pokémon Elite Redux Logo" />
+  <h1>Pokémon Elite Redux Patcher</h1>
+</header>
 
 <!-- APP -->
 <div id="wrapper">
@@ -154,22 +156,73 @@
 			<button id="button-create" class="disabled" disabled data-localize="create_patch">Create patch</button>
 		</div>
 	</div>
+	
+	<!-- How to patch section -->
+	<div class="card how-to-patch">
+		<h2 class="card-title">How to Patch</h2>
+		<div class="card-content">
+			<p>Always use a clean Pokémon Emerald ROM (usually called <span class="code">1986 - Pokemon Emerald (U)(TrashMan).gba</span>). Press "Apply Patch" and you'll get the <span class="code">Elite Redux.gba</span> file.</p>
+		</div>
+	</div>
+	
+	<!-- FAQ section -->
+	<div class="card">
+		<h2 class="card-title">Frequently Asked Questions</h2>
+		<div class="accordion">
+			<div class="accordion-item">
+				<div class="accordion-header">What is Pokémon Elite Redux?</div>
+				<div class="accordion-content">
+					<p><strong>What is Pokémon Elite Redux?</strong></p>
+					<p>Pokémon Elite Redux is a challenging ROM hack based on Pokémon Emerald, designed for players who love strategic battling and team building without the grind. Its most unique feature allows Pokémon to have up to four abilities active simultaneously (switchable and innate), opening up countless new strategies and replayability.</p>
+				
+					<p>The game features:</p>
+					<ul>
+						<li><strong>Multi-Ability System:</strong> Up to 3 switchable and 3 fixed (innate) abilities per Pokémon.</li>
+						<li><strong>Enhanced Difficulty:</strong> Every trainer has custom competitive movesets and smarter AI. Multiple difficulty modes are available.</li>
+						<li><strong>Massive Quality of Life (QoL):</strong> Zero grinding (easy EV/nature/ability changes, level caps, unlimited leveling), auto-healing, improved UI, infinite-use Poké Balls with 100% catch rate, and much more.</li>
+						<li><strong>Expanded Content:</strong> Includes Pokémon from Gens 1-9+, Mega Evolutions, new Redux forms, over 500 new custom abilities, and rebalanced moves/items.</li>
+						<li><strong>Customization:</strong> Choose starters from Gens 1-9 and all types, easily manage your team and items.</li>
+					</ul>
+				
+					<p>Essentially, Elite Redux offers a completely overhauled Emerald experience focused on challenging battles, strategic depth, and player convenience.</p>
+				</div>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<div class="accordion-header">Where can I find a clean ROM?</div>
+				<div class="accordion-content">
+					<p>We cannot provide links to ROMs due to copyright restrictions. You'll need to source a legal copy of Pokémon Emerald on your own.</p>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<div class="accordion-header">What emulator should I use?</div>
+				<div class="accordion-content">
+					<p>We recommend using mGBA, VBA-M, or RetroArch with the mGBA core for the best experience. Most GBA emulators should work fine.</p>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<div class="accordion-header">I'm getting an error when patching</div>
+				<div class="accordion-content">
+					<p>Make sure you're using a clean, unmodified Pokémon Emerald ROM. The patcher will verify the checksum to ensure compatibility.</p>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
-
-
-
-
 
 <!-- FOOTER -->
 <footer>
 	<div>
 		<button id="button-settings" class="button-outer"><img src="style/icon_settings.svg" class="icon settings" /> <span data-localize="settings">Settings</span></button>
 	</div>
-
-	Rom Patcher JS <small>v2.8.1</small> by <a href="/">Marc Robledo</a>
-	<br />
-	<img src="style/icon_github.svg" class="icon github" /> <a href="https://github.com/marcrobledo/RomPatcher.js/" target="_blank">See on GitHub</a>
-	<img src="style/icon_heart.svg" class="icon heart" /> <a href="https://www.paypal.me/marcrobledo/5" target="_blank" rel="nofollow">Donate</a>
+	
+	<div class="footer-links">
+		<a href="https://discord.com/invite/KEsQX9vR3f" target="_blank" class="discord-button">
+			<img src="style/icon_discord.svg" class="icon discord" /> Join our Discord
+		</a>
+	</div>
+	
+	<p>Pokémon Elite Redux Patcher &copy; Project Elite Redux</p>
 </footer>
 
 </div>
@@ -217,9 +270,20 @@
 			<div class="rightcol-lg text-right"><span id="switch-fix-checksum" class="switch disabled"></span></div>
 		</div>
 
-		<div class="row">
+		<div class="row m-b">
 			<div class="leftcol-lg"><label data-localize="light_theme">Light theme</label></div>
 			<div class="rightcol-lg text-right"><span id="switch-theme" class="switch disabled"></span></div>
+		</div>
+		
+		<hr class="settings-divider">
+		
+		<div class="credits">
+			<p>Powered by Rom Patcher JS v2.8.1</p>
+			<p>
+				<a href="https://github.com/marcrobledo/RomPatcher.js/" target="_blank">
+					<img src="style/icon_github.svg" class="icon github" /> ROM Patcher JS by Marc Robledo
+				</a>
+			</p>
 		</div>
 	</div>
 </div>
