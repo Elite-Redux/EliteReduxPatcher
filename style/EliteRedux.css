@@ -468,6 +468,13 @@ footer {
   font-size: 0.9rem;
   padding: 2rem 0;
   margin-top: 2rem;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  clear: both;
+  order: 999; /* Ensure it's the last flex item */
 }
 
 footer a {
