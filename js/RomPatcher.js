@@ -250,6 +250,10 @@ var AppSettings={
 	lightTheme:false,
 
 	load:function(){
+		// Always keep outputFileNameMatch as true regardless of saved setting
+		this.outputFileNameMatch=true;
+		el('switch-output-name').className='switch enabled';
+		
 		if(typeof localStorage!=='undefined' && localStorage.getItem('rompatcher-js-settings')){
 			try{
 				var loadedSettings=JSON.parse(localStorage.getItem('rompatcher-js-settings'));
@@ -258,9 +262,6 @@ var AppSettings={
 					this.langCode=loadedSettings.langCode;
 					el('select-language').value=this.langCode;
 				}
-				// Always keep outputFileNameMatch as true regardless of saved setting
-				this.outputFileNameMatch=true;
-				el('switch-output-name').className='switch enabled';
 				if(loadedSettings.fixChecksum===true){
 					this.fixChecksum=loadedSettings.fixChecksum;
 					el('switch-fix-checksum').className='switch enabled';
