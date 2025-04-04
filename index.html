@@ -188,41 +188,81 @@
 				</div>
 			</div>
 			<div class="accordion-item">
-				<div class="accordion-header">Where can I find a clean ROM?</div>
+				<div class="accordion-header">What emulator should I use?</div>
 				<div class="accordion-content">
-					<p>We cannot provide links to ROMs due to copyright restrictions. You'll need to source a legal copy of Pokémon Emerald on your own.</p>
+					<p>For the best experience with Pokémon Elite Redux, we highly recommend:</p>
+					<ul>
+						<li><strong>PC/Mac:</strong> mGBA (preferred for stability)</li>
+						<li><strong>Mobile (Android/iOS):</strong> RetroArch (mGBA core) or Pizza Boy GBA Pro</li>
+					</ul>
+					<p><strong>Unsupported Emulators:</strong></p>
+					<p>Avoid the following emulators, as they may cause crashes or bugs with Elite Redux:</p>
+					<ul>
+						<li>MyBoy / MyOldBoy</li>
+						<li>Visualboy Advance (VBA) / VBA-M</li>
+						<li>John GBA / John GBAC</li>
+						<li>No$gba</li>
+						<li>VBA GX</li>
+						<li>gPSP</li>
+						<li>Gbarunner2</li>
+					</ul>
+					<p>Using recommended emulators ensures smoother gameplay.</p>
 				</div>
 			</div>
 			<div class="accordion-item">
-				<div class="accordion-header">What emulator should I use?</div>
+				<div class="accordion-header">Where can I find a clean ROM?</div>
 				<div class="accordion-content">
-					<p>We recommend using mGBA, VBA-M, or RetroArch with the mGBA core for the best experience. Most GBA emulators should work fine.</p>
+					<p>We cannot provide links to ROMs due to copyright restrictions. You'll need to source a legal copy of Pokémon Emerald (Trashman) on your own.</p>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<div class="accordion-header">How do I update to a newer version of Elite Redux?</div>
+				<div class="accordion-content">
+					<p>Follow these steps carefully to update your game:</p>
+					<ol>
+						<li><strong>Save In-Game:</strong> Use the game's save menu (SELECT button). <strong>Do not use emulator save states.</strong> Saving inside a Pokémon Center is recommended.</li>
+						<li><strong>Check Save Compatibility:</strong> Confirm if the update works with existing saves. Check the <code>#updates</code> channel on our Discord, or ask in <code>#game-help</code> if unsure.</li>
+						<li><strong>Backup (Recommended):</strong> Consider backing up your current <code>.sav</code> file and the old patched <code>.gba</code> file just in case.</li>
+						<li><strong>Patch a Fresh ROM:</strong> Get a new, clean Pokémon Emerald (Trashman) ROM. Apply the latest Elite Redux patch using this website.</li>
+						<li><strong>Match Filenames:</strong> Ensure the newly patched ROM file has the <em>exact same name</em> as your old ROM file (e.g., <code>Elite Redux.gba</code>). This allows the game to find your existing save file (<code>Elite Redux.sav</code>).</li>
+						<li><strong>Replace Old ROM:</strong> Place the newly patched ROM in the same folder your old one was in, replacing it.</li>
+					</ol>
+					<p>If the update is save-compatible, you can now load your game and continue your progress.</p>
+				</div>
+			</div>
+			<div class="accordion-item">
+				<div class="accordion-header">After patching, I get a .txt file instead of .gba. What should I do?</div>
+				<div class="accordion-content">
+					<p>Sometimes, your browser might incorrectly save the patched file with a <code>.txt</code> extension.</p>
+					<p>Simply rename the downloaded file, changing the extension from <code>.txt</code> back to <code>.gba</code>. For example, rename <code>Elite Redux.txt</code> to <code>Elite Redux.gba</code>. The file should then work correctly in your emulator.</p>
 				</div>
 			</div>
 			<div class="accordion-item">
 				<div class="accordion-header">I'm getting an error when patching</div>
 				<div class="accordion-content">
-					<p>Make sure you're using a clean, unmodified Pokémon Emerald ROM. The patcher will verify the checksum to ensure compatibility.</p>
+					<p>Make sure you're using a clean, unmodified Pokémon Emerald Trashman ROM. Do NOT use the already patched Elite Redux ROM. The patcher will verify the checksum to ensure compatibility.</p>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
-<!-- FOOTER -->
-<footer>
-	<div>
-		<button id="button-settings" class="button-outer"><img src="style/icon_settings.svg" class="icon settings" /> <span data-localize="settings">Settings</span></button>
-	</div>
 	
-	<div class="footer-links">
-		<a href="https://discord.com/invite/KEsQX9vR3f" target="_blank" class="discord-button">
-			<img src="style/icon_discord.svg" class="icon discord" /> Join our Discord
-		</a>
-	</div>
-	
-	<p>Pokémon Elite Redux Patcher &copy; Project Elite Redux</p>
-</footer>
+	<!-- FOOTER -->
+	<footer>
+		<div>
+			<button id="button-settings" class="button-outer"><img src="style/icon_settings.svg" class="icon settings" /> <span data-localize="settings">Settings</span></button>
+		</div>
+		
+		<div class="footer-links">
+			<a href="https://discord.com/invite/KEsQX9vR3f" target="_blank" class="discord-button">
+				<img src="style/icon_discord.svg" class="icon discord" /> Join our Discord
+			</a>
+			<a href="https://dex.elite-redux.com" target="_blank" class="pokedex-button">
+				<img src="style/icon_pokedex.svg" class="icon pokedex" /> Elite Redux Pokédex
+			</a>
+		</div>
+		
+		<p>Pokémon Elite Redux Patcher &copy; Project Elite Redux</p>
+	</footer>
 
 </div>
 

@@ -184,6 +184,7 @@ button {
   color: white;
   transition: var(--transition);
   cursor: pointer;
+  text-decoration: none;
 }
 
 button.enabled:hover {
@@ -461,6 +462,20 @@ button:disabled {
   max-height: 500px;
 }
 
+.accordion-content ul,
+.accordion-content ol {
+  padding-left: 2rem;
+  margin: 0.5rem 0;
+}
+
+.accordion-content li {
+  margin-bottom: 0.5rem;
+}
+
+.accordion-content li:last-child {
+  margin-bottom: 0;
+}
+
 /* Footer */
 footer {
   text-align: center;
@@ -503,6 +518,7 @@ footer a:hover {
   border-radius: var(--border-radius);
   font-weight: 500;
   transition: var(--transition);
+  text-decoration: none;
 }
 
 .discord-button:hover {
@@ -512,6 +528,28 @@ footer a:hover {
 }
 
 .discord-button .icon.discord {
+  filter: brightness(0) invert(1);
+}
+
+.pokedex-button {
+  display: inline-flex;
+  align-items: center;
+  background-color: #e74c3c;
+  color: white !important;
+  padding: 0.5rem 1rem;
+  border-radius: var(--border-radius);
+  font-weight: 500;
+  transition: var(--transition);
+  text-decoration: none;
+}
+
+.pokedex-button:hover {
+  background-color: #c0392b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.pokedex-button .icon.pokedex {
   filter: brightness(0) invert(1);
 }
 
