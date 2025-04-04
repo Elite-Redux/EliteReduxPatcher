@@ -161,7 +161,14 @@
 	<div class="card how-to-patch">
 		<h2 class="card-title">How to Patch</h2>
 		<div class="card-content">
-			<p>Always use a clean Pokémon Emerald ROM (usually called <span class="code">1986 - Pokemon Emerald (U)(TrashMan).gba</span>). Press "Apply Patch" and you'll get the <span class="code">Elite Redux.gba</span> file.</p>
+			<div class="patch-instructions">
+				<img src="style/icon_patch.svg" alt="Patch" />
+				<div class="patch-content">
+					<p>Always use a clean Pokémon Emerald ROM (usually called</p>
+					<div class="patch-filename">1986 - Pokemon Emerald (U)(TrashMan).gba</div>
+					<p>Press "Apply Patch" and you'll get the <span class="highlight-text">Elite_Redux.gba</span> file.</p>
+				</div>
+			</div>
 		</div>
 	</div>
 	
@@ -197,8 +204,20 @@
 							<img src="style/icon_check.svg" alt="Supported" /> Recommended Emulators
 						</div>
 						<ul class="emulator-list">
-							<li><img src="style/icon_check.svg" alt="Supported" /><strong>PC/Mac:</strong> mGBA (preferred for stability)</li>
-							<li><img src="style/icon_check.svg" alt="Supported" /><strong>Mobile (Android/iOS):</strong> RetroArch (mGBA core) or Pizza Boy GBA Pro</li>
+							<li>
+								<img src="style/icon_check.svg" alt="Supported" />
+								<div>
+									<strong>PC/Mac:</strong>
+									<span>mGBA (preferred for stability)</span>
+								</div>
+							</li>
+							<li>
+								<img src="style/icon_check.svg" alt="Supported" />
+								<div>
+									<strong>Mobile (Android/iOS):</strong>
+									<span>RetroArch (mGBA core) or Pizza Boy GBA Pro</span>
+								</div>
+							</li>
 						</ul>
 					</div>
 					
@@ -208,13 +227,13 @@
 						</div>
 						<p>Avoid the following emulators, as they may cause crashes or bugs with Elite Redux:</p>
 						<ul class="emulator-list">
-							<li><img src="style/icon_cross.svg" alt="Unsupported" />MyBoy / MyOldBoy</li>
-							<li><img src="style/icon_cross.svg" alt="Unsupported" />Visualboy Advance (VBA) / VBA-M</li>
-							<li><img src="style/icon_cross.svg" alt="Unsupported" />John GBA / John GBAC</li>
-							<li><img src="style/icon_cross.svg" alt="Unsupported" />No$gba</li>
-							<li><img src="style/icon_cross.svg" alt="Unsupported" />VBA GX</li>
-							<li><img src="style/icon_cross.svg" alt="Unsupported" />gPSP</li>
-							<li><img src="style/icon_cross.svg" alt="Unsupported" />Gbarunner2</li>
+							<li><img src="style/icon_cross.svg" alt="Unsupported" /><span>MyBoy / MyOldBoy</span></li>
+							<li><img src="style/icon_cross.svg" alt="Unsupported" /><span>Visualboy Advance (VBA) / VBA-M</span></li>
+							<li><img src="style/icon_cross.svg" alt="Unsupported" /><span>John GBA / John GBAC</span></li>
+							<li><img src="style/icon_cross.svg" alt="Unsupported" /><span>No$gba</span></li>
+							<li><img src="style/icon_cross.svg" alt="Unsupported" /><span>VBA GX</span></li>
+							<li><img src="style/icon_cross.svg" alt="Unsupported" /><span>gPSP</span></li>
+							<li><img src="style/icon_cross.svg" alt="Unsupported" /><span>Gbarunner2</span></li>
 						</ul>
 					</div>
 					
@@ -231,28 +250,94 @@
 				<div class="accordion-header">How do I update to a newer version of Elite Redux?</div>
 				<div class="accordion-content">
 					<p>Follow these steps carefully to update your game:</p>
-					<ol>
-						<li><strong>Save In-Game:</strong> Use the game's save menu (SELECT button). <strong>Do not use emulator save states.</strong> Saving inside a Pokémon Center is recommended.</li>
-						<li><strong>Check Save Compatibility:</strong> Confirm if the update works with existing saves. Check the <code>#updates</code> channel on our Discord, or ask in <code>#game-help</code> if unsure.</li>
-						<li><strong>Backup (Recommended):</strong> Consider backing up your current <code>.sav</code> file and the old patched <code>.gba</code> file just in case.</li>
-						<li><strong>Patch a Fresh ROM:</strong> Get a new, clean Pokémon Emerald (Trashman) ROM. Apply the latest Elite Redux patch using this website.</li>
-						<li><strong>Match Filenames:</strong> Ensure the newly patched ROM file has the <em>exact same name</em> as your old ROM file (e.g., <code>Elite Redux.gba</code>). This allows the game to find your existing save file (<code>Elite Redux.sav</code>).</li>
-						<li><strong>Replace Old ROM:</strong> Place the newly patched ROM in the same folder your old one was in, replacing it.</li>
-					</ol>
-					<p>If the update is save-compatible, you can now load your game and continue your progress.</p>
+					
+					<div class="update-steps">
+						<div class="update-step">
+							<div class="step-number">1</div>
+							<div class="step-content">
+								<div class="step-title">Save In-Game</div>
+								<p>Use the game's save menu (SELECT button). <span class="warning-text">Do not use emulator save states.</span> Saving inside a Pokémon Center is recommended.</p>
+							</div>
+						</div>
+						
+						<div class="update-step">
+							<div class="step-number">2</div>
+							<div class="step-content">
+								<div class="step-title">Check Save Compatibility</div>
+								<p>Confirm if the update works with existing saves. Check the <code>#updates</code> channel on our Discord, or ask in <code>#game-help</code> if unsure.</p>
+							</div>
+						</div>
+						
+						<div class="update-step">
+							<div class="step-number">3</div>
+							<div class="step-content">
+								<div class="step-title">Backup (Recommended)</div>
+								<p>Consider backing up your current <span class="highlight-text">.sav</span> file and the old patched <span class="highlight-text">.gba</span> file just in case.</p>
+							</div>
+						</div>
+						
+						<div class="update-step">
+							<div class="step-number">4</div>
+							<div class="step-content">
+								<div class="step-title">Patch a Fresh ROM</div>
+								<p>Get a new, clean Pokémon Emerald (Trashman) ROM. Apply the latest Elite Redux patch using this website.</p>
+							</div>
+						</div>
+						
+						<div class="update-step">
+							<div class="step-number">5</div>
+							<div class="step-content">
+								<div class="step-title">Match Filenames</div>
+								<p>Ensure the newly patched ROM file has the <em>exact same name</em> as your old ROM file (e.g., <span class="highlight-text">Elite_Redux.gba</span>).</p>
+								<p>This allows the game to find your existing save file (<span class="highlight-text">Elite_Redux.sav</span>).</p>
+							</div>
+						</div>
+						
+						<div class="update-step">
+							<div class="step-number">6</div>
+							<div class="step-content">
+								<div class="step-title">Replace Old ROM</div>
+								<p>Place the newly patched ROM in the same folder your old one was in, replacing it.</p>
+							</div>
+						</div>
+					</div>
+					
+					<div class="update-note">
+						<img src="style/icon_info.svg" alt="Note" />
+						<p>If the update is save-compatible, you can now load your game and continue your progress.</p>
+					</div>
 				</div>
 			</div>
 			<div class="accordion-item">
 				<div class="accordion-header">After patching, I get a .txt file instead of .gba. What should I do?</div>
 				<div class="accordion-content">
-					<p>Sometimes, your browser might incorrectly save the patched file with a <code>.txt</code> extension.</p>
-					<p>Simply rename the downloaded file, changing the extension from <code>.txt</code> back to <code>.gba</code>. For example, rename <code>Elite Redux.txt</code> to <code>Elite Redux.gba</code>. The file should then work correctly in your emulator.</p>
+					<div class="file-note">
+						<img src="style/icon_file.svg" alt="File" />
+						<div class="file-note-content">
+							<p>Sometimes, your browser might incorrectly save the patched file with a <code>.txt</code> extension.</p>
+							<p>Simply rename the downloaded file, changing the extension from <code>.txt</code> back to <code>.gba</code>:</p>
+							
+							<div class="file-action mobile-file-action">
+								<code>Elite_Redux.txt</code>
+								<span class="arrow-icon">→</span>
+								<code>Elite_Redux.gba</code>
+							</div>
+							
+							<p>The file should then work correctly in your emulator.</p>
+						</div>
+					</div>
 				</div>
 			</div>
 			<div class="accordion-item">
 				<div class="accordion-header">I'm getting an error when patching</div>
 				<div class="accordion-content">
-					<p>Make sure you're using a clean, unmodified Pokémon Emerald Trashman ROM. Do NOT use the already patched Elite Redux ROM. The patcher will verify the checksum to ensure compatibility.</p>
+					<div class="error-note">
+						<img src="style/icon_error.svg" alt="Error" />
+						<div class="error-note-content">
+							<p>Make sure you're using a clean, unmodified Pokémon Emerald Trashman ROM.</p>
+							<p><strong>Do NOT</strong> use the already patched Elite Redux ROM. The patcher will verify the checksum to ensure compatibility.</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
