@@ -100,24 +100,24 @@ header h1 {
 
 /* How to Patch styling */
 .how-to-patch .card-content {
-  padding: 1.5rem;
+  padding: 1rem;
 }
 
 .patch-instructions {
   background-color: rgba(65, 189, 199, 0.1);
   border-radius: var(--border-radius);
-  padding: 1.5rem;
+  padding: 1rem;
   border-left: 4px solid var(--primary-color);
   display: flex;
   align-items: flex-start;
-  margin-top: 0.5rem;
+  margin-top: 0;
 }
 
 .patch-instructions img {
-  margin-right: 1rem;
-  width: 20px;
-  height: 20px;
-  margin-top: 2px;
+  margin-right: 0.75rem;
+  width: 16px;
+  height: 16px;
+  margin-top: 3px;
 }
 
 .patch-content {
@@ -125,16 +125,20 @@ header h1 {
 }
 
 .patch-content p {
+  margin-bottom: 0.5rem;
+}
+
+.patch-content p:last-child {
   margin-bottom: 0;
 }
 
 .patch-filename {
   background-color: rgba(255, 255, 255, 0.1);
-  padding: 0.5rem 0.75rem;
+  padding: 0.4rem 0.6rem;
   border-radius: var(--border-radius);
   font-family: 'Roboto Mono', monospace;
   display: inline-block;
-  margin: 0.5rem 0;
+  margin: 0.25rem 0 0.5rem;
 }
 
 /* Tabs */
