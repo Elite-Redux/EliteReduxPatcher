@@ -755,6 +755,13 @@ button:disabled {
   .file-note, .error-note {
     padding: 1rem 0.75rem;
   }
+
+  /* Allow select element text to wrap */
+  #input-file-patch {
+    white-space: normal;
+    overflow-wrap: break-word;
+    height: auto; /* Allow height to adjust based on content */
+  }
 }
 
 /* Footer */
@@ -887,6 +894,12 @@ footer a:hover {
     margin: 0.5rem 0;
   }
   
+  input[type="file"] {
+    white-space: normal;
+    overflow-wrap: break-word;
+    height: auto; /* Allow height to adjust based on content */
+  }
+
   .footer-links {
     flex-direction: column;
     gap: 0.5rem;
