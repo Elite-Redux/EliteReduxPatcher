@@ -80,3 +80,5 @@ Have fun playing!
 ```
 
 If no previous release remains, omit the "previous release" line.
+
+Save the announcement to `~/Downloads/elite-redux-{version}-announcement.md` so the user can easily copy-paste it.
