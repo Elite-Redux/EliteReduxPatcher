@@ -62,3 +62,21 @@ Entry format:
 ### Step 6: Verify
 
 Read back the updated `CUSTOM_PATCHER` array to confirm it looks correct. Report the final state of the dropdown to the user.
+
+### Step 7: Discord announcement
+
+Propose a ready-to-paste Discord announcement message. Use this template (replace version accordingly):
+
+```
+## v{version} is now live on our Online Patcher!
+
+Patch your ROM directly in the browser at **[elite-redux.com](https://elite-redux.com)**
+
+The previous {previous version name} release is still available to download as well.
+
+Have fun playing!
+
+— Darky
+```
+
+If no previous release remains, omit the "previous release" line.
