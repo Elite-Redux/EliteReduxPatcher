@@ -199,22 +199,23 @@ input[type=file].enabled:hover, select.enabled:hover {
 }
 
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZlcnNpb249IjEuMSIgeD0iMTJweCIgeT0iMHB4IiB3aWR0aD0iMjRweCIgaGVpZ2h0PSIzcHgiIHZpZXdCb3g9IjAgMCA2IDMiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDYgMyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PHBvbHlnb24gZmlsbD0iI2ZmZmZmZiIgcG9pbnRzPSI1Ljk5MiwwIDIuOTkyLDMgLTAuMDA4LDAgIi8+PC9zdmc+");
-  background-position: calc(100% - 10px) center;
-  background-repeat: no-repeat;
-  padding-right: 2rem;
-}
-
-select option {
-  color: #101418;
-  background-color: #f6f8fa;
+  -webkit-appearance: auto;
+  -moz-appearance: auto;
+  appearance: auto;
+  background-image: none;
+  padding-right: 1rem;
 }
 
 select.placeholder-selected {
-  color: var(--muted-text);
+  color: #626975;
+}
+
+.patch-picker-stack select {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: #181d24;
+  background-color: #f3f5f7;
+  border: 1px solid rgba(24, 29, 36, 0.14);
+  box-shadow: none;
 }
 
 .patch-picker-stack {
