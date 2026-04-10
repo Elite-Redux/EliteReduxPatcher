@@ -86,15 +86,16 @@ var ZIPManager=(function(){
 									
 									
 									var option;
+									var selectElement=customPatch.selectElement || el('input-file-patch');
 									if(i===0){
 										option=customPatch.selectOption;
 										nextOption=option.nextSibling;
 									}else{
 										option=document.createElement('option');
 										if(nextOption)
-											el('input-file-patch').insertBefore(option, nextOption);
+											selectElement.insertBefore(option, nextOption);
 										else
-											el('input-file-patch').appendChild(option);
+											selectElement.appendChild(option);
 									}
 									option.value=customPatchIndex+','+i;
 									option.innerHTML=customPatch.patches[i].name;

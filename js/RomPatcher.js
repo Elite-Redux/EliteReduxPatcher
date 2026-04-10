@@ -21,6 +21,13 @@ else if(location.protocol==='https:' && 'serviceWorker' in navigator && window.l
 
 
 var romFile, patchFile, patch, romFile1, romFile2, tempFile, headerSize, oldHeader;
+var customPatchCurrentDefaultValue='';
+var customPatchUI={
+	currentSelect:null,
+	oldSelect:null,
+	oldToggle:null,
+	oldContainer:null
+};
 
 var CAN_USE_WEB_WORKERS=true;
 var webWorkerApply,webWorkerCreate,webWorkerCrc;
@@ -102,6 +109,159 @@ function _(str){return (LOCALIZATION[AppSettings.langCode] && LOCALIZATION[AppSe
 /* custom patcher */
 function isCustomPatcherEnabled(){
 	return typeof CUSTOM_PATCHER!=='undefined' && typeof CUSTOM_PATCHER==='object' && CUSTOM_PATCHER.length
+}
+function getCustomPatchSelection(selectionValue){
+	var matches=(selectionValue || '').match(/^(\d+)(?:,(\d+))?$/);
+	if(!matches)
+		return null;
+
+	var customPatchIndex=parseInt(matches[1], 10);
+	var compressedPatchIndex=(typeof matches[2]==='string')? parseInt(matches[2], 10) : null;
+	var selectedPatch=(compressedPatchIndex!==null)? CUSTOM_PATCHER[customPatchIndex].patches[compressedPatchIndex] : CUSTOM_PATCHER[customPatchIndex];
+
+	return {
+		customPatchIndex:customPatchIndex,
+		compressedPatchIndex:compressedPatchIndex,
+		selectedPatch:selectedPatch
+	};
+}
+function parseOrFetchCustomPatch(selectionValue){
+	var selection=getCustomPatchSelection(selectionValue);
+	if(!selection)
+		return;
+
+	if(selection.selectedPatch.fetchedFile){
+		parseCustomPatch(selection.selectedPatch);
+	}else{
+		patch=null;
+		patchFile=null;
+		fetchPatch(selection.customPatchIndex, selection.compressedPatchIndex);
+	}
+}
+function syncCustomPatchUI(){
+	if(!customPatchUI.currentSelect)
+		return;
+
+	var oldReleaseSelected=customPatchUI.oldSelect && customPatchUI.oldSelect.value!=='';
+	customPatchUI.currentSelect.classList.toggle('placeholder-selected', customPatchUI.currentSelect.value==='');
+	customPatchUI.currentSelect.classList.toggle('archive-muted', oldReleaseSelected);
+
+	if(customPatchUI.oldSelect){
+		customPatchUI.oldSelect.classList.toggle('placeholder-selected', customPatchUI.oldSelect.value==='');
+	}
+
+	if(customPatchUI.oldToggle){
+		customPatchUI.oldToggle.classList.toggle('revealed', customPatchUI.oldContainer && !customPatchUI.oldContainer.classList.contains('hide'));
+	}
+}
+function revealOldPatches(){
+	if(customPatchUI.oldContainer && customPatchUI.oldContainer.classList.contains('hide')){
+		customPatchUI.oldContainer.classList.remove('hide');
+		syncCustomPatchUI();
+	}
+}
+function buildCustomPatchOption(select, customPatch, customPatchIndex){
+	customPatch.selectElement=select;
+	customPatch.selectOption=document.createElement('option');
+	customPatch.selectOption.value=customPatchIndex;
+	customPatch.selectOption.innerHTML=customPatch.name || customPatch.file;
+	select.appendChild(customPatch.selectOption);
+}
+function createCustomPatchSelects(){
+	var currentSelect=document.createElement('select');
+	var oldSelect=document.createElement('select');
+	var currentPlaceholder=document.createElement('option');
+	var oldPlaceholder=document.createElement('option');
+	var patchInput=el('input-file-patch');
+	var patchInputParent=patchInput.parentElement;
+	var patchPickerStack=document.createElement('div');
+	var oldToggle=document.createElement('button');
+	var oldContainer=document.createElement('div');
+	var oldNote=document.createElement('p');
+
+	currentSelect.disabled=true;
+	currentSelect.id='input-file-patch';
+	currentSelect.className='patch-select';
+	currentPlaceholder.value='';
+	currentPlaceholder.innerHTML='Choose current release...';
+	currentPlaceholder.disabled=true;
+	currentSelect.appendChild(currentPlaceholder);
+
+	oldSelect.disabled=true;
+	oldSelect.id='input-file-patch-old';
+	oldSelect.className='patch-select';
+	oldPlaceholder.value='';
+	oldPlaceholder.innerHTML='Choose an old release...';
+	oldPlaceholder.disabled=true;
+	oldSelect.appendChild(oldPlaceholder);
+
+	for(var i=0; i<CUSTOM_PATCHER.length; i++){
+		CUSTOM_PATCHER[i].fetchedFile=false;
+		if(CUSTOM_PATCHER[i].group==='old'){
+			buildCustomPatchOption(oldSelect, CUSTOM_PATCHER[i], i);
+		}else{
+			buildCustomPatchOption(currentSelect, CUSTOM_PATCHER[i], i);
+			if(!customPatchCurrentDefaultValue)
+				customPatchCurrentDefaultValue=String(i);
+		}
+	}
+
+	currentSelect.value=customPatchCurrentDefaultValue;
+	oldSelect.value='';
+
+	patchInputParent.replaceChild(patchPickerStack, patchInput);
+	patchPickerStack.className='patch-picker-stack';
+	patchInputParent.title='';
+
+	patchPickerStack.appendChild(currentSelect);
+
+	oldToggle.type='button';
+	oldToggle.id='toggle-old-patches';
+	oldToggle.className='archive-toggle enabled';
+	oldToggle.innerHTML='Old releases';
+	patchPickerStack.appendChild(oldToggle);
+
+	oldContainer.id='old-patch-picker';
+	oldContainer.className='old-patch-picker hide';
+	oldContainer.appendChild(oldSelect);
+
+	oldNote.className='archive-note';
+	oldNote.innerHTML='Older releases are available here if you need an archive build.';
+	oldContainer.appendChild(oldNote);
+	patchPickerStack.appendChild(oldContainer);
+
+	customPatchUI.currentSelect=currentSelect;
+	customPatchUI.oldSelect=oldSelect;
+	customPatchUI.oldToggle=oldToggle;
+	customPatchUI.oldContainer=oldContainer;
+
+	addEvent(currentSelect,'change',function(){
+		if(!this.value)
+			return;
+
+		if(customPatchUI.oldSelect)
+			customPatchUI.oldSelect.value='';
+
+		syncCustomPatchUI();
+		parseOrFetchCustomPatch(this.value);
+	});
+	addEvent(oldToggle,'click',function(){
+		revealOldPatches();
+	});
+	addEvent(oldSelect,'change',function(){
+		if(!this.value)
+			return;
+
+		revealOldPatches();
+		if(customPatchUI.currentSelect)
+			customPatchUI.currentSelect.value='';
+
+		syncCustomPatchUI();
+		parseOrFetchCustomPatch(this.value);
+	});
+
+	syncCustomPatchUI();
+	return currentSelect;
 }
 function parseCustomPatch(customPatch){
 	patchFile=customPatch.fetchedFile;
@@ -324,60 +484,8 @@ addEvent(window,'load',function(){
 
 	/* predefined patches */
 	if(isCustomPatcherEnabled()){
-		var select=document.createElement('select');
-		select.disabled=true;
-		select.id='input-file-patch';
-		el('input-file-patch').parentElement.replaceChild(select, el('input-file-patch'));
-		select.parentElement.title='';
-
-		for(var i=0; i<CUSTOM_PATCHER.length; i++){
-			CUSTOM_PATCHER[i].fetchedFile=false;
-
-			CUSTOM_PATCHER[i].selectOption=document.createElement('option');
-			CUSTOM_PATCHER[i].selectOption.value=i;
-			CUSTOM_PATCHER[i].selectOption.innerHTML=CUSTOM_PATCHER[i].name || CUSTOM_PATCHER[i].file;
-			select.appendChild(CUSTOM_PATCHER[i].selectOption);
-			
-			if(typeof CUSTOM_PATCHER[i].patches==='object'){
-				for(var j=0; j<CUSTOM_PATCHER[i].patches.length; j++){					
-					if(j===0){
-						CUSTOM_PATCHER[i].patches[0].selectOption=CUSTOM_PATCHER[i].selectOption;
-						CUSTOM_PATCHER[i].selectOption=null;
-					}else{
-						CUSTOM_PATCHER[i].patches[j].selectOption=document.createElement('option');
-						select.appendChild(CUSTOM_PATCHER[i].patches[j].selectOption);
-					}
-
-					CUSTOM_PATCHER[i].patches[j].selectOption.value=i+','+j;
-					CUSTOM_PATCHER[i].patches[j].selectOption.innerHTML=CUSTOM_PATCHER[i].patches[j].name || CUSTOM_PATCHER[i].patches[j].file;
-				}
-			}
-		}
-
-		addEvent(select,'change',function(){
-			var selectedCustomPatchIndex, selectedCustomPatchCompressedIndex, selectedPatch;
-
-			if(/^\d+,\d+$/.test(this.value)){
-				var indexes=this.value.split(',');
-				selectedCustomPatchIndex=parseInt(indexes[0]);
-				selectedCustomPatchCompressedIndex=parseInt(indexes[1]);
-				selectedPatch=CUSTOM_PATCHER[selectedCustomPatchIndex].patches[selectedCustomPatchCompressedIndex];
-			}else{
-				selectedCustomPatchIndex=parseInt(this.value);
-				selectedCustomPatchCompressedIndex=null;
-				selectedPatch=CUSTOM_PATCHER[selectedCustomPatchIndex];
-			}
-			
-			
-			if(selectedPatch.fetchedFile){
-				parseCustomPatch(selectedPatch);
-			}else{
-				patch=null;
-				patchFile=null;
-				fetchPatch(selectedCustomPatchIndex, selectedCustomPatchCompressedIndex);
-			}
-		});
-		fetchPatch(0, 0);
+		createCustomPatchSelects();
+		parseOrFetchCustomPatch(customPatchCurrentDefaultValue);
 	
 	}else{
 		setTabCreateEnabled(true);
@@ -898,12 +1006,13 @@ function setMessage(tab, key, className){
 }
 
 function setElementEnabled(element,status){
-	if(status){
-		el(element).className='enabled';
-	}else{
-		el(element).className='disabled';
-	}
-	el(element).disabled=!status;
+	var elementNode=el(element);
+	if(!elementNode)
+		return;
+
+	elementNode.classList.remove('enabled', 'disabled');
+	elementNode.classList.add(status?'enabled':'disabled');
+	elementNode.disabled=!status;
 }
 function setTabCreateEnabled(status){
 	if(
@@ -924,11 +1033,14 @@ function setTabCreateEnabled(status){
 function setTabApplyEnabled(status){
 	setElementEnabled('input-file-rom', status);
 	setElementEnabled('input-file-patch', status);
+	setElementEnabled('input-file-patch-old', status);
+	setElementEnabled('toggle-old-patches', status);
 	if(romFile && status && (patch || isCustomPatcherEnabled())){
 		setElementEnabled('button-apply', status);
 	}else{
 		setElementEnabled('button-apply', false);
 	}
+	syncCustomPatchUI();
 }
 function setCreatorMode(creatorMode){
 	if(creatorMode){

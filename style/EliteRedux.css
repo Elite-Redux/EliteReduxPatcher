@@ -208,6 +208,59 @@ select {
   padding-right: 2rem;
 }
 
+select option {
+  color: #101418;
+  background-color: #f6f8fa;
+}
+
+select.placeholder-selected {
+  color: var(--muted-text);
+}
+
+.patch-picker-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.patch-select.archive-muted {
+  opacity: 0.7;
+}
+
+button.archive-toggle {
+  align-self: flex-start;
+  min-width: 0;
+  margin: 0;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid rgba(65, 189, 199, 0.4);
+  background-color: transparent;
+  color: var(--primary-color);
+  box-shadow: none;
+}
+
+button.archive-toggle.enabled:hover {
+  background-color: rgba(65, 189, 199, 0.12);
+  color: var(--light-text);
+  transform: none;
+}
+
+button.archive-toggle.revealed {
+  color: var(--light-text);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.old-patch-picker {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.archive-note {
+  color: var(--muted-text);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
 /* Buttons */
 .buttons {
   margin-top: 1.5rem;
